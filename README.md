@@ -74,6 +74,31 @@ If an intruder opens an `.ali` file in a Text Editor, Hex Editor, or File Manage
 2.  **No Metadata:** No file names, dates, or sizes are visible inside the binary.
 3.  **Entropy:** The file appears as pure "white noise" (random data).
 
+## 💻 System Compatibility
+
+### ✅ Supported (Native)
+*   **Linux:** All distributions (Ubuntu, Fedora, Arch, etc.)
+*   **macOS:** via Terminal (Uses the built-in LibreSSL/OpenSSL).
+*   **BSD:** All variants.
+
+### 🪟 Windows Support
+This tool **cannot** be run directly in `CMD` or `PowerShell`. To use it on Windows, you must use one of the following "Linux-subsystems":
+
+1.  **WSL2 (Windows Subsystem for Linux):** **(Recommended)** Install Ubuntu from the Microsoft Store. This tool will run natively inside that terminal.
+2.  **Git Bash:** If you have "Git for Windows" installed, you can run these functions inside the Git Bash terminal.
+3.  **Cygwin:** A large collection of GNU and Open Source tools which provide functionality similar to a Linux distribution on Windows.
+
+---
+
+### Why doesn't it work on native Windows?
+Standard Windows handles files differently than Unix. 
+*   **`tar`:** While modern Windows 10/11 has a version of `tar`, it behaves differently with file permissions.
+*   **`openssl`:** Windows does not include OpenSSL by default.
+*   **`Bash`:** The logic for `read -rs` (hidden password input) and variable expansion (`${input%.*}`) is specific to the Bash shell.
+
+### ⚠️ Portability Note
+If you lock a file on **Linux**, you **can** unlock it on a **Mac** (and vice versa) because they both use the same OpenSSL standards. This makes it a great way to move secret data between different types of computers securely.
+
 ## ⚠️ The Golden Rule
 **There is no recovery.** Because of the 1,000,000-iteration hardening, even a supercomputer cannot help you if you lose your password. If the password is lost, the data is mathematically considered "deleted from the universe."
 
